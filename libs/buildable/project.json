@@ -1,0 +1,50 @@
+{
+  "name": "buildable",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/buildable/src",
+  "prefix": "ng-incremental-builds-bundle-size",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/buildable/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/buildable/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/buildable/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/buildable/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/buildable/**/*.ts",
+          "libs/buildable/**/*.html"
+        ]
+      }
+    }
+  }
+}

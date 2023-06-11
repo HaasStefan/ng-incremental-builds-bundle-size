@@ -14,7 +14,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@ng-incremental-builds-bundle-size/buildable": [
+        "libs/buildable/src/index.ts"
+      ],
+      "@ng-incremental-builds-bundle-size/non-buildable": [
+        "libs/non-buildable/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
